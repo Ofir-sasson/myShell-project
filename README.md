@@ -88,13 +88,13 @@ Gracefully catches and reports:
 -SIGUSR1: open file limit → Too many open files!
 -SIGCHLD: cleans up background jobs
 
-# Compilation 
-gcc ex1.c -o ex1 -Wall
+# Compilation (for the latest vertion)
+gcc ex3.c -o ex3 -Wall
 
 # Run 
-./ex1 <dangerous_commands_file> <log_file>
+./ex3 <dangerous_commands_file> <log_file>
 Example:
-./ex1 dangerous.txt log.txt
+./ex3 dangerous.txt log.txt
 
 # Input 
 Input is given interactively via the terminal.
