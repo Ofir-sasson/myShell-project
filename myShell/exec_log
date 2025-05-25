@@ -1,0 +1,20 @@
+ls : 0.00650 sec
+ls : 0.00553 sec
+cat exec_log : 0.00397 sec
+echo hello | wc -c : 0.00441 sec
+echo hello | wc -c : 0.00448 sec
+echo hello : 0.00185 sec
+wc -c : 0.00228 sec
+mcalc : 0.01292 sec
+mcalc : 0.00158 sec
+mcalc : 0.00080 sec
+mcalc : 0.00164 sec
+mcalc : 0.00073 sec
+mcalc : 0.00089 sec
+mcalc : 0.00073 sec
+ls : 0.00691 sec
+cat exec_log : 0.00355 sec
+cat exec_log : 0.00389 sec
+wc -c : 0.00683 sec
+ls : 0.16219 sec
+mcalc : 0.11690 sec

