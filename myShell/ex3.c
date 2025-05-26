@@ -1391,7 +1391,6 @@ void reduce_matrix_tree(McalcMatrix *matrix) {
 int check_foemat_matric(char **args, int countArgs){
     for(int i = 1; i < countArgs; i++){
         if(args[i][0] != '"' || args[i][strlen(args[i]) - 1] != '"') {
-            
             return -1; // Invalid format
         }
     }
