@@ -18,3 +18,10 @@ cat exec_log : 0.00389 sec
 wc -c : 0.00683 sec
 ls : 0.16219 sec
 mcalc : 0.11690 sec
+mcalc : 0.00651 sec
+mcalc : 0.00094 sec
+ls : 0.00447 sec
+cat exec_log : 0.00322 sec
+ls : 0.00457 sec
+echo hello : 0.00449 sec
+mcalc : 0.00089 sec

@@ -73,7 +73,7 @@ void free_matrix(McalcMatrix *matrix);
 void trim_quotes(char *str);
 void* matrix_op_thread(void *arg);
 void reduce_matrix_tree(McalcMatrix *matrix);
-
+int check_foemat_matric(char **args, int countArgs);
 
 // handlers
 void sigchld_handler(int signo) {
@@ -1024,6 +1024,15 @@ void matrix_operation(char *input, FILE *fp, int *cmd_count, double *last_time, 
         i++;
     }
 
+    if(check_foemat_matric != 0) { // Check if the format is correct
+        fprintf(stderr, "ERR_MAT_INPUT\n");
+        for (int j = 0; j < countArgs; j++) {
+            free(args[j]);
+        }
+        free(args);
+        return;
+    }
+
     for (int j = 1; j < countArgs; j++) {
         trim_quotes(args[j]); // Remove the quotes from the string
     }
@@ -1146,6 +1155,7 @@ void split_matrix(char *input, McalcMatrix *matrix, int index) {
     char *dims = strtok(start, ":");
     char *matrix_data = strtok(NULL, ":");
     if (dims == NULL || matrix_data == NULL) {
+        matrix->matrix[index] = NULL; // Avoid dangling pointer
         fprintf(stderr, "ERR_MAT_INPUT\n");
         return;
     }
@@ -1153,6 +1163,7 @@ void split_matrix(char *input, McalcMatrix *matrix, int index) {
     char *rows_str = strtok(dims, ",");
     char *cols_str = strtok(NULL, ",");
     if (rows_str == NULL || cols_str == NULL) {
+        matrix->matrix[index] = NULL; // Avoid dangling pointer
         fprintf(stderr, "ERR_MAT_INPUT\n");
         return;
     }
@@ -1161,6 +1172,7 @@ void split_matrix(char *input, McalcMatrix *matrix, int index) {
     int cols = atoi(cols_str);
     if (rows <= 0 || cols <= 0) {
         fprintf(stderr, "ERR_MAT_INPUT\n");
+        matrix->matrix[index] = NULL; // Avoid dangling pointer
         return;
     }
 
@@ -1374,4 +1386,14 @@ void reduce_matrix_tree(McalcMatrix *matrix) {
         matrix->count_matrix = new_count;
         active = new_count;
     }
+}
+
+int check_foemat_matric(char **args, int countArgs){
+    for(int i = 1; i < countArgs; i++){
+        if(args[i][0] != '"' || args[i][strlen(args[i]) - 1] != '"') {
+            
+            return -1; // Invalid format
+        }
+    }
+    return 0; // Valid format
 }
